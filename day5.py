@@ -23,13 +23,14 @@ def is_diagonal(line):
     xrange, yrange = line
     return len(xrange) > 1 and len(yrange) > 1
 
-lines = parse_input('input/day5.in')
-counts = Counter()
-for line in [l for l in lines if not is_diagonal(l)]:
-    counts.update(get_points(line))
-print(f"Part 1: {len([c for c in counts.values() if c >= 2])}")
+def count_overlaps(lines):
+    counts = Counter()
+    for line in lines:
+        counts.update(get_points(line))
+    return len([c for c in counts.values() if c >= 2])
 
-counts = Counter()
-for line in lines:
-    counts.update(get_points(line))
-print(f"Part 2: {len([c for c in counts.values() if c >= 2])}")
+lines = parse_input('input/day5.in')
+
+print(f"Part 1: {count_overlaps((l for l in lines if not is_diagonal(l)))}")
+print(f"Part 2: {count_overlaps(lines)}")
+
