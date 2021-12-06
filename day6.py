@@ -1,19 +1,11 @@
-from collections import Counter
-
 def count_fish(state, days):
-    counts = Counter(state)
+    counts = [state.count(n) for n in range(9)]
     for _ in range(days):
-        for timer in range(9):
-            counts[timer-1] = counts[timer]
-
-        reborn = counts[-1]
-        counts[8] = reborn
+        reborn, *counts = counts
+        counts.append(reborn)
         counts[6] += reborn
-        counts[-1] = 0
-    return sum(v for v in counts.values())
+    return sum(c for c in counts)
 
 state = [int(x) for x in open("input/day6.in").read().strip().split(",")]
 print(f"Part 1: {count_fish(state, 80)}")
 print(f"Part 2: {count_fish(state, 256)}")
-
-
