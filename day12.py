@@ -29,6 +29,5 @@ def create_counter(connections, allow_two = False):
 
 connections = parse_tree("input/day12.in")
 count_paths = create_counter(connections, allow_two = False)
-# print(f"{count_paths(allow_two=True)}")
 print(f"Part 1: {count_paths()}")
 print(f"Part 2: {count_paths(allow_two=True)}")
